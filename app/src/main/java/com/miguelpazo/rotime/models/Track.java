@@ -7,20 +7,29 @@ import java.util.List;
  * Created by Miguel R. Pazo Sánchez (miguelpazo.com) on 06/09/2015.
  */
 public class Track {
+    private Integer id;
     private String description;
     private Date date;
-    private List<Location> lstLocation;
+    private List<PointLocation> lstPointLocation;
 
     public Track(String description) {
         this.description = description;
     }
 
-    public List<Location> getLstLocation() {
-        return lstLocation;
+    public List<PointLocation> getLstPointLocation() {
+        return lstPointLocation;
     }
 
-    public void setLstLocation(List<Location> lstLocation) {
-        this.lstLocation = lstLocation;
+    public void setLstPointLocation(List<PointLocation> lstPointLocation) {
+        this.lstPointLocation = lstPointLocation;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getDescription() {

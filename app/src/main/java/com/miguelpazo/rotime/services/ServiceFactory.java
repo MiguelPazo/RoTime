@@ -17,8 +17,8 @@ public class ServiceFactory {
         return instance;
     }
 
-    public ServiceLocation getServiceLocation() {
-        return new ServiceLocation();
+    public ServicePointLocation getServicePointLocation() {
+        return new ServicePointLocation();
     }
 
     public ServiceTrack getServiceTrack() {

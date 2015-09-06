@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class FragListTracks extends Fragment {
 
-    private ListView lvLocations;
+    private ListView lvTracks;
     private List<Track> lstTrack;
     private IFragListTracks iFragListTracks;
 
@@ -37,9 +37,9 @@ public class FragListTracks extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        lvLocations = (ListView) getView().findViewById(R.id.fragment_list_traks);
-        lvLocations.setAdapter(new LocationListView(this, lstTrack));
-        lvLocations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvTracks = (ListView) getView().findViewById(R.id.fragment_list_traks);
+        lvTracks.setAdapter(new TrackListView(this, lstTrack));
+        lvTracks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -54,10 +54,10 @@ public class FragListTracks extends Fragment {
         this.iFragListTracks = iFragListTracks;
     }
 
-    private class LocationListView extends ArrayAdapter<Track> {
+    private class TrackListView extends ArrayAdapter<Track> {
         private Fragment oFragment;
 
-        public LocationListView(Fragment oFragment, List arrTrack) {
+        public TrackListView(Fragment oFragment, List arrTrack) {
             super(oFragment.getActivity(), 0, arrTrack);
 
             this.oFragment = oFragment;

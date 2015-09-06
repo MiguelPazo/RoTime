@@ -7,26 +7,31 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.miguelpazo.rotime.R;
 import com.miguelpazo.rotime.models.Track;
+import com.miguelpazo.rotime.services.ServiceFactory;
 
 
 public class MainActivity extends Activity {
 
     public static Track oTrack;
+    private ServiceFactory oService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        oService = ServiceFactory.getInstance();
+
         FragListTracks fragListTracks = new FragListTracks();
         fragListTracks.setiFragListTracks(new FragListTracks.IFragListTracks() {
+
             @Override
             public void onTrackSelected(Track oTrackSelected) {
                 oTrack = oTrackSelected;
+                oTrack.setLstPointLocation(oService.getServicePointLocation().getListPointLocations(oTrack.getId()));
 
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     addFragment(R.id.activity_main_placeholder_maps, new FragMaps(), null);

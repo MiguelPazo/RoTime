@@ -3,16 +3,25 @@ package com.miguelpazo.rotime.models;
 /**
  * Created by Miguel R. Pazo Sánchez (miguelpazo.com) on 06/09/2015.
  */
-public class Location {
+public class PointLocation {
+    private Integer id;
     private Double latitude;
     private Double longitude;
     private String direction;
     private String country;
 
-    public Location() {
+    public PointLocation() {
     }
 
-    public Location(Double latitude, Double longitude) {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public PointLocation(Double latitude, Double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
