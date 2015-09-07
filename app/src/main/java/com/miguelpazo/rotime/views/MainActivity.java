@@ -3,12 +3,19 @@ package com.miguelpazo.rotime.views;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.text.method.CharacterPickerDialog;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.miguelpazo.rotime.R;
+import com.miguelpazo.rotime.aServices.Tracking;
 import com.miguelpazo.rotime.models.Track;
 import com.miguelpazo.rotime.services.ServiceFactory;
 
@@ -42,6 +49,16 @@ public class MainActivity extends Activity {
         });
 
         addFragment(R.id.activity_main_placeholder_main, fragListTracks, null);
+
+        Button ibTracking = (Button) findViewById(R.id.button_tracking);
+
+        ibTracking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startService(new Intent(MainActivity.this, Tracking.class));
+                Toast.makeText(MainActivity.this, "Inicio el servicio", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void addFragment(int placeHolder, Fragment fragment, String flag) {
