@@ -6,4 +6,7 @@
 
     <string name="title_begin">Inicio</string>
     <string name="title_end">Fin</string>
+
+    <string name="start">+</string>
+    <string name="stop">■</string>
 </resources>

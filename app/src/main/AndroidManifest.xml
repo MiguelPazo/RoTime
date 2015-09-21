@@ -28,9 +28,14 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBIp7hDAQxCQdabyKGke9iD92OffSQV8Ic" />
+            android:value="AIzaSyCFb3ivO9JUq6lSzVIfsiceP8qSSUZnl2g" />
 
         <service android:name=".aServices.Tracking" />
+
+        <provider
+            android:name=".contentProvider.RoTimeContentProvider"
+            android:authorities="com.miguelpazo.rotime.ContentProvider"
+            android:exported="true" />
     </application>
 
 </manifest>

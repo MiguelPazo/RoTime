@@ -19,18 +19,20 @@ import com.miguelpazo.rotime.R;
 import com.miguelpazo.rotime.models.PointLocation;
 import com.miguelpazo.rotime.models.Track;
 
+import java.util.List;
+
 /**
  * Created by Miguel R. Pazo Sánchez (miguelpazo.com) on 06/09/2015.
  */
 public class FragMaps extends MapFragment implements OnMapReadyCallback {
 
     private GoogleMap googleMap;
-    private Track oTrack;
+    private List<PointLocation> lstLocation;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        oTrack = MainActivity.oTrack;
+        lstLocation = MainActivity.lstLocation;
 
         getMapAsync(this);
     }
@@ -39,40 +41,42 @@ public class FragMaps extends MapFragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap gMap) {
         googleMap = gMap;
 
-        //first and last marker
-        PointLocation firstPoint = oTrack.getLstPointLocation().get(0);
-        PointLocation lastPoint = oTrack.getLstPointLocation().get(oTrack.getLstPointLocation().size() - 1);
+        if (lstLocation != null) {
+            //first and last marker
+            PointLocation firstPoint = lstLocation.get(0);
+            PointLocation lastPoint = lstLocation.get(lstLocation.size() - 1);
 
-        MarkerOptions firstMarker = new MarkerOptions();
-        MarkerOptions lastMarker = new MarkerOptions();
+            MarkerOptions firstMarker = new MarkerOptions();
+            MarkerOptions lastMarker = new MarkerOptions();
 
-        firstMarker
-                .position(new LatLng(firstPoint.getLatitude(), firstPoint.getLongitude()))
-                .title(getString(R.string.title_begin))
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+            firstMarker
+                    .position(new LatLng(firstPoint.getLatitude(), firstPoint.getLongitude()))
+                    .title(getString(R.string.title_begin))
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
 
-        lastMarker
-                .position(new LatLng(lastPoint.getLatitude(), lastPoint.getLongitude()))
-                .title(getString(R.string.title_begin))
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+            lastMarker
+                    .position(new LatLng(lastPoint.getLatitude(), lastPoint.getLongitude()))
+                    .title(getString(R.string.title_end))
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
 
-        googleMap.addMarker(firstMarker);
-        googleMap.addMarker(lastMarker);
+            googleMap.addMarker(firstMarker);
+            googleMap.addMarker(lastMarker);
 
-        //draw polyline
-        PolylineOptions polylineOptions = new PolylineOptions();
+            //draw polyline
+            PolylineOptions polylineOptions = new PolylineOptions();
 
-        for (PointLocation pointLocation : oTrack.getLstPointLocation()) {
-            polylineOptions.add(new LatLng(pointLocation.getLatitude(), pointLocation.getLongitude()));
+            for (PointLocation pointLocation : lstLocation) {
+                polylineOptions.add(new LatLng(pointLocation.getLatitude(), pointLocation.getLongitude()));
+            }
+
+            polylineOptions.width(6f);
+            polylineOptions.color(Color.RED);
+
+            googleMap.addPolyline(polylineOptions);
+
+            //moving camera
+            moveTo(firstPoint.getLatitude(), firstPoint.getLongitude(), true);
         }
-
-        polylineOptions.width(6f);
-        polylineOptions.color(Color.RED);
-
-        googleMap.addPolyline(polylineOptions);
-
-        //moving camera
-        moveTo(firstPoint.getLatitude(), firstPoint.getLongitude(), true);
     }
 
     public void moveTo(final double latitude, final double longitude, final boolean animate) {

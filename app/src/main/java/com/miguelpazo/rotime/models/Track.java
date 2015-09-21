@@ -9,20 +9,7 @@ import java.util.List;
 public class Track {
     private Integer id;
     private String description;
-    private Date date;
-    private List<PointLocation> lstPointLocation;
-
-    public Track(String description) {
-        this.description = description;
-    }
-
-    public List<PointLocation> getLstPointLocation() {
-        return lstPointLocation;
-    }
-
-    public void setLstPointLocation(List<PointLocation> lstPointLocation) {
-        this.lstPointLocation = lstPointLocation;
-    }
+    private Long creationTime;
 
     public Integer getId() {
         return id;
@@ -40,11 +27,11 @@ public class Track {
         this.description = description;
     }
 
-    public Date getDate() {
-        return date;
+    public Long getCreationTime() {
+        return creationTime;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCreationTime(Long creationTime) {
+        this.creationTime = creationTime;
     }
 }

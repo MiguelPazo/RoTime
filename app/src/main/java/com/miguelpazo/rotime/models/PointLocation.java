@@ -5,12 +5,19 @@ package com.miguelpazo.rotime.models;
  */
 public class PointLocation {
     private Integer id;
+    private Integer idTrack;
     private Double latitude;
     private Double longitude;
-    private String direction;
-    private String country;
 
     public PointLocation() {
+    }
+
+    public Integer getIdTrack() {
+        return idTrack;
+    }
+
+    public void setIdTrack(Integer idTrack) {
+        this.idTrack = idTrack;
     }
 
     public Integer getId() {
@@ -40,21 +47,5 @@ public class PointLocation {
 
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
-    }
-
-    public String getDirection() {
-        return direction;
-    }
-
-    public void setDirection(String direction) {
-        this.direction = direction;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 }

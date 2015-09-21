@@ -11,8 +11,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.miguelpazo.rotime.R;
+import com.miguelpazo.rotime.contracts.ContractTrack;
 import com.miguelpazo.rotime.models.Track;
-import com.miguelpazo.rotime.services.ServiceFactory;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class FragListTracks extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View vFragment = inflater.inflate(R.layout.frag_list_tracks, container, false);
-        lstTrack = ServiceFactory.getInstance().getServiceTrack().getListTracks();
+        lstTrack = ContractTrack.getListTracks(getActivity().getContentResolver());
 
         return vFragment;
     }
@@ -67,10 +67,8 @@ public class FragListTracks extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent) {
             View vFragElement = this.oFragment.getActivity().getLayoutInflater().inflate(R.layout.frag_list_tracks_element, null);
             TextView tvDescription = (TextView) vFragElement.findViewById(R.id.frag_track_description);
-            TextView tvDate = (TextView) vFragElement.findViewById(R.id.frag_track_date);
 
             tvDescription.setText(getItem(position).getDescription());
-//            tvDate.setText(getItem(position).getDate().toString());
             return vFragElement;
         }
     }
